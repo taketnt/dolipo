@@ -70,6 +70,8 @@
 		D7987FBC0D8460CF00E9D333 /* NSFileManagerDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFileManagerDK.h; sourceTree = "<group>"; };
 		D7987FBD0D8460CF00E9D333 /* NSFileManagerDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFileManagerDK.m; sourceTree = "<group>"; };
 		D79880B30D84C81100E9D333 /* ForbiddenDefault.wiki */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; lineEnding = 0; name = ForbiddenDefault.wiki; path = ../../wiki/ForbiddenDefault.wiki; sourceTree = SOURCE_ROOT; };
+		D79881810D85A49900E9D333 /* dolipo_release.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = dolipo_release.xml; path = ../sites/dolipo_release.xml; sourceTree = SOURCE_ROOT; };
+		D79881820D85A49900E9D333 /* dolipo_release.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = dolipo_release.html; path = ../sites/dolipo_release.html; sourceTree = SOURCE_ROOT; };
 		D7BAF5600D69EE3500ECB817 /* polipo */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = polipo; sourceTree = "<group>"; };
 		D7BAF57F0D69EF9800ECB817 /* DolipoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DolipoController.h; sourceTree = "<group>"; };
 		D7BAF5800D69EF9800ECB817 /* DolipoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DolipoController.m; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 		29B97314FDCFA39411CA2CEA /* Polipoli */ = {
 			isa = PBXGroup;
 			children = (
+				D79881800D85A47F00E9D333 /* HTML */,
 				D75599DB0D6CA131007A5079 /* UI Classes */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -197,6 +200,15 @@
 				D75599DD0D6CA144007A5079 /* FadeWindow.m */,
 			);
 			name = "UI Classes";
+			sourceTree = "<group>";
+		};
+		D79881800D85A47F00E9D333 /* HTML */ = {
+			isa = PBXGroup;
+			children = (
+				D79881810D85A49900E9D333 /* dolipo_release.xml */,
+				D79881820D85A49900E9D333 /* dolipo_release.html */,
+			);
+			name = HTML;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
