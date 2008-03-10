@@ -1,4 +1,4 @@
-#summary Sample configuration file for Polipo. -*-sh-*-
+#summary Sample configuration file for Polipo. -*-sh-*-. please edit this as RAW format.
 
 # You should not need to use a configuration file; all configuration
 # variables have reasonable defaults.  If you want to use one, you
