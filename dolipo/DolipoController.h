@@ -32,6 +32,7 @@
 - (IBAction)run:(id)sender;
 - (IBAction)trim:(id)sender;
 - (IBAction)restart:(id)sender;
+- (IBAction)test:(id)sender;
 
 - (IBAction)openNetworkPreference:(id)sender;
 - (IBAction)openPolipoConfig:(id)sender;

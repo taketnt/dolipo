@@ -65,7 +65,7 @@
 	[[NSFileManager defaultManager] createDirectoryAtSupportPath:@"Cache"];
 	
 	// copy resource files for polipo
-	NSArray* copylist = [NSArray arrayWithObjects:	@"forbidden_default.txt", 
+	NSArray* copylist = [NSArray arrayWithObjects:	@"ForbiddenDefault.wiki", 
 													@"Forbidden.wiki",
 													@"Uncachable.wiki",
 													@"Config.wiki",
@@ -175,6 +175,11 @@
 	
 	TaskWrapper* trimTask=[[TaskWrapper alloc] initWithController:self arguments:[NSArray arrayWithObjects:@"/usr/bin/python", trimPath, @"-v", [[[NSFileManager defaultManager] applicationSupportPath] stringByAppendingPathComponent:@"Cache"], maximumCacheSize, nil]];
 	[trimTask startProcess];
+}
+
+- (IBAction)test:(id)sender
+{
+	[[NSWorkspace sharedWorkspace] openURL:[[[NSURL alloc] initWithString:@"http://dolipo.googlecode.com/svn/trunk/sites/dolipo.html"] autorelease]];
 }
 
 // This callback is implemented as part of conforming to the ProcessController protocol.

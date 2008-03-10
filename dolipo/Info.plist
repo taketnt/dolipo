@@ -27,7 +27,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
-	<string>http://homepage.mac.com/koh/RSS/dolipo.xml</string>
+	<string>http://dolipo.googlecode.com/svn/trunk/sites/dolipo_release.xml</string>
 	<key>SUScheduledCheckInterval</key>
 	<integer>86400</integer>
 </dict>
