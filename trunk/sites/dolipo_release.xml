@@ -6,8 +6,8 @@
     <description>dolioo update history</description>
     <language>en</language>
     <item>
-        <title>dolipo 1.0.8.2</title>
-		<enclosure sparkle:version="1.0.8.2" url="http://dolipo.googlecode.com/files/dolipo.zip" length="1000000" type="application/octet-stream"/>
+        <title>dolipo 1.0.8.3</title>
+		<enclosure sparkle:version="1.0.8.3" url="http://dolipo.googlecode.com/files/dolipo.zip" length="1000000" type="application/octet-stream"/>
         <sparkle:releaseNotesLink>http://dolipo.googlecode.com/svn/trunk/sites/dolipo_release.html</sparkle:releaseNotesLink>
     </item> 
 </channel>
