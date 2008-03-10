@@ -1,4 +1,4 @@
-#summary uncachable URLs. please edit as RAW format.
+#summary uncachable URLs. please edit this as RAW format.
 ^http://www\.tumblr\.com/api/write/.+
 ^http://www\.lingr\.com/api/.+
 ^http://twitter\.com/statuses/.+
