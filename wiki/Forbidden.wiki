@@ -1,4 +1,4 @@
-#summary forbidden URLs
+#summary forbidden URLs.  please edit this as RAW format.
 
 # Sample forbidden URLs file for polipo.  -*-sh-*-
 # Put this in /etc/polipo/forbidden or in ~/.polipo-forbidden.
