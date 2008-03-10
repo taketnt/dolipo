@@ -1,5 +1,4 @@
 #summary uncachable URLs
-
 ^http://www\.tumblr\.com/api/write/.+
 ^http://www\.lingr\.com/api/.+
 ^http://twitter\.com/statuses/.+
