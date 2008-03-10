@@ -1,4 +1,5 @@
 #summary uncachable URLs. please edit this as RAW format.
+^http://dolipo\.googlecode\.com/files/.+
 ^http://www\.tumblr\.com/api/write/.+
 ^http://www\.lingr\.com/api/.+
 ^http://twitter\.com/statuses/.+
