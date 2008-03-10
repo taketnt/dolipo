@@ -82,7 +82,7 @@
 	// callbackの登録 
 	[self watchForNetworkChanges];
 	
-	// schedule trim cache
+	// schedule trim cache : 60*60*24 sec = 24 hour
 	[NSTimer scheduledTimerWithTimeInterval:60*60*24 target:self selector:@selector(trim:) userInfo:nil repeats:YES];
 }
 
@@ -134,14 +134,26 @@
 		/* create an Path to polipo file */
 		NSBundle* bundle = [NSBundle mainBundle];
 		NSString* polipoPath = [bundle pathForResource:@"polipo" ofType:@""];
+		
 		NSString* proxy;
 		if ( [proxyEnableButton state] == NSOnState ) {
-			proxy = [[NSString alloc] initWithFormat:@"parentProxy=%@:%@", [proxyTextField stringValue], [portTextField stringValue]];
+			proxy = [[[NSString alloc] initWithFormat:@"parentProxy=%@:%@", [proxyTextField stringValue], [portTextField stringValue]] autorelease];
 		} else {
 			proxy = @"";
 		}
-
-        polipoTask=[[TaskWrapper alloc] initWithController:self arguments:[NSArray arrayWithObjects:polipoPath, @"-c", @"Config.wiki", proxy, nil]];
+		NSString* forbidden;
+		if ( [adblockEnableMenu state] == NSOnState ) {
+			forbidden = [[[NSString alloc] initWithFormat:@"forbiddenFile = \"~/Library/Application Support/dolipo/Forbidden.wiki\""] autorelease];
+		} else {
+			forbidden = [[[NSString alloc] initWithFormat:@"forbiddenFile = \"~/Library/Application Support/dolipo/ForbiddenDefault.wiki\""] autorelease];
+		}
+		NSString* pmm;
+		if ( [pmmEnableMenu state] == NSOnState ) {
+			pmm = [[[NSString alloc] initWithFormat:@"pmmSize=8192"] autorelease];
+		} else {
+			pmm = @"";
+		}
+        polipoTask=[[TaskWrapper alloc] initWithController:self arguments:[NSArray arrayWithObjects:polipoPath, @"-c", @"Config.wiki", proxy, forbidden, pmm, nil]];
         // kick off the process asynchronously
         [polipoTask startProcess];
 		
@@ -175,11 +187,6 @@
 	
 	TaskWrapper* trimTask=[[TaskWrapper alloc] initWithController:self arguments:[NSArray arrayWithObjects:@"/usr/bin/python", trimPath, @"-v", [[[NSFileManager defaultManager] applicationSupportPath] stringByAppendingPathComponent:@"Cache"], maximumCacheSize, nil]];
 	[trimTask startProcess];
-}
-
-- (IBAction)test:(id)sender
-{
-	[[NSWorkspace sharedWorkspace] openURL:[[[NSURL alloc] initWithString:@"http://dolipo.googlecode.com/svn/trunk/sites/dolipo.html"] autorelease]];
 }
 
 // This callback is implemented as part of conforming to the ProcessController protocol.
@@ -263,6 +270,11 @@
 	}else{	
 		[loginItemMgr removeLoginItem:bundlePath];	
 	}
+}
+
+- (IBAction)test:(id)sender
+{
+	[[NSWorkspace sharedWorkspace] openURL:[[[NSURL alloc] initWithString:@"http://dolipo.googlecode.com/svn/trunk/sites/dolipo.html"] autorelease]];
 }
 
 #pragma mark SCFramework

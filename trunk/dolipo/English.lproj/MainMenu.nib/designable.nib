@@ -8,8 +8,8 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="530"/>
 			<integer value="300"/>
-			<integer value="452"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1118,6 +1118,8 @@
 					<string>enableParentProxy</string>
 					<string>startAtLogin</string>
 					<string>maximumCacheSize</string>
+					<string>enableAdblock</string>
+					<string>enableSMM</string>
 				</object>
 				<bool key="NSAppliesImmediately">YES</bool>
 			</object>
@@ -1296,14 +1298,45 @@
 						<reference key="NSOnImage" ref="449556965"/>
 						<reference key="NSMixedImage" ref="302257727"/>
 					</object>
-					<object class="NSMenuItem" id="865507136">
+					<object class="NSMenuItem" id="432539240">
 						<reference key="NSMenu" ref="1066868853"/>
-						<string key="NSTitle">Enable Parent Proxy</string>
+						<string key="NSTitle">Options</string>
 						<string key="NSKeyEquiv"/>
-						<int key="NSKeyEquivModMask">1048576</int>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="449556965"/>
 						<reference key="NSMixedImage" ref="302257727"/>
+						<string key="NSAction">submenuAction:</string>
+						<object class="NSMenu" key="NSSubmenu" id="878916697">
+							<string key="NSTitle">Options</string>
+							<object class="NSMutableArray" key="NSMenuItems">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMenuItem" id="411749521">
+									<reference key="NSMenu" ref="878916697"/>
+									<bool key="NSIsDisabled">YES</bool>
+									<string key="NSTitle">Enable Parent Proxy</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="449556965"/>
+									<reference key="NSMixedImage" ref="302257727"/>
+								</object>
+								<object class="NSMenuItem" id="419445050">
+									<reference key="NSMenu" ref="878916697"/>
+									<string key="NSTitle">Enable Adblock</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="449556965"/>
+									<reference key="NSMixedImage" ref="302257727"/>
+								</object>
+								<object class="NSMenuItem" id="926162217">
+									<reference key="NSMenu" ref="878916697"/>
+									<string key="NSTitle">Enable PMM (Faster, Unstable)</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="449556965"/>
+									<reference key="NSMixedImage" ref="302257727"/>
+								</object>
+							</object>
+						</object>
 					</object>
 					<object class="NSMenuItem" id="685214204">
 						<reference key="NSMenu" ref="1066868853"/>
@@ -1947,30 +1980,6 @@
 					<int key="connectionID">458</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.enableParentProxy</string>
-						<reference key="source" ref="865507136"/>
-						<reference key="destination" ref="164653114"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="865507136"/>
-							<reference key="NSDestination" ref="164653114"/>
-							<string key="NSLabel">value: values.enableParentProxy</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.enableParentProxy</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">470</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">restart:</string>
-						<reference key="source" ref="539118345"/>
-						<reference key="destination" ref="865507136"/>
-					</object>
-					<int key="connectionID">472</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">restart:</string>
 						<reference key="source" ref="539118345"/>
@@ -2161,6 +2170,102 @@
 						<reference key="destination" ref="1054331548"/>
 					</object>
 					<int key="connectionID">523</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.enableParentProxy</string>
+						<reference key="source" ref="411749521"/>
+						<reference key="destination" ref="668763613"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="411749521"/>
+							<reference key="NSDestination" ref="668763613"/>
+							<string key="NSLabel">value: values.enableParentProxy</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.enableParentProxy</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">531</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.enableAdblock</string>
+						<reference key="source" ref="419445050"/>
+						<reference key="destination" ref="668763613"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="419445050"/>
+							<reference key="NSDestination" ref="668763613"/>
+							<string key="NSLabel">value: values.enableAdblock</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.enableAdblock</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">532</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.enableSMM</string>
+						<reference key="source" ref="926162217"/>
+						<reference key="destination" ref="668763613"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="926162217"/>
+							<reference key="NSDestination" ref="668763613"/>
+							<string key="NSLabel">value: values.enableSMM</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.enableSMM</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">533</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">restart:</string>
+						<reference key="source" ref="539118345"/>
+						<reference key="destination" ref="411749521"/>
+					</object>
+					<int key="connectionID">539</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">restart:</string>
+						<reference key="source" ref="539118345"/>
+						<reference key="destination" ref="419445050"/>
+					</object>
+					<int key="connectionID">540</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">restart:</string>
+						<reference key="source" ref="539118345"/>
+						<reference key="destination" ref="926162217"/>
+					</object>
+					<int key="connectionID">541</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">adblockEnableMenu</string>
+						<reference key="source" ref="539118345"/>
+						<reference key="destination" ref="419445050"/>
+					</object>
+					<int key="connectionID">542</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">smmEnableMenu</string>
+						<reference key="source" ref="539118345"/>
+						<reference key="destination" ref="926162217"/>
+					</object>
+					<int key="connectionID">543</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">pmmEnableMenu</string>
+						<reference key="source" ref="539118345"/>
+						<reference key="destination" ref="926162217"/>
+					</object>
+					<int key="connectionID">544</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2904,12 +3009,12 @@
 							<reference ref="685214204"/>
 							<reference ref="769998731"/>
 							<reference ref="253908505"/>
-							<reference ref="865507136"/>
 							<reference ref="505624944"/>
 							<reference ref="131816496"/>
 							<reference ref="782062128"/>
 							<reference ref="1054331548"/>
 							<reference ref="588146563"/>
+							<reference ref="432539240"/>
 						</object>
 						<reference key="parent" ref="1049"/>
 					</object>
@@ -2931,11 +3036,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">459</int>
 						<reference key="object" ref="769998731"/>
-						<reference key="parent" ref="1066868853"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">464</int>
-						<reference key="object" ref="865507136"/>
 						<reference key="parent" ref="1066868853"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -3139,6 +3239,41 @@
 						<reference key="object" ref="588146563"/>
 						<reference key="parent" ref="1066868853"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">526</int>
+						<reference key="object" ref="432539240"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="878916697"/>
+						</object>
+						<reference key="parent" ref="1066868853"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">527</int>
+						<reference key="object" ref="878916697"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="419445050"/>
+							<reference ref="926162217"/>
+							<reference ref="411749521"/>
+						</object>
+						<reference key="parent" ref="432539240"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">528</int>
+						<reference key="object" ref="411749521"/>
+						<reference key="parent" ref="878916697"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">529</int>
+						<reference key="object" ref="419445050"/>
+						<reference key="parent" ref="878916697"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">530</int>
+						<reference key="object" ref="926162217"/>
+						<reference key="parent" ref="878916697"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -3319,12 +3454,13 @@
 					<string>455.IBPluginDependency</string>
 					<string>457.IBPluginDependency</string>
 					<string>459.IBPluginDependency</string>
-					<string>464.IBPluginDependency</string>
 					<string>473.IBPluginDependency</string>
+					<string>475.IBEditorWindowLastContentRect</string>
 					<string>475.IBPluginDependency</string>
 					<string>475.IBWindowTemplateEditedContentRect</string>
 					<string>475.NSWindowTemplate.visibleAtLaunch</string>
 					<string>475.editorWindowContentRectSynchronizationRect</string>
+					<string>475.lastResizeAction</string>
 					<string>475.windowTemplate.hasMaxSize</string>
 					<string>475.windowTemplate.hasMinSize</string>
 					<string>475.windowTemplate.maxSize</string>
@@ -3354,6 +3490,12 @@
 					<string>518.IBPluginDependency</string>
 					<string>522.IBPluginDependency</string>
 					<string>524.IBPluginDependency</string>
+					<string>526.IBPluginDependency</string>
+					<string>527.IBEditorWindowLastContentRect</string>
+					<string>527.IBPluginDependency</string>
+					<string>528.IBPluginDependency</string>
+					<string>529.IBPluginDependency</string>
+					<string>530.IBPluginDependency</string>
 					<string>56.IBPluginDependency</string>
 					<string>56.ImportedFromIB2</string>
 					<string>57.IBPluginDependency</string>
@@ -3568,7 +3710,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{686, 561}, {208, 193}}</string>
+					<string>{{312, 563}, {208, 193}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{1030, 536}, {208, 163}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3576,11 +3718,24 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>{{194, 353}, {347, 157}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{801, 521}, {347, 157}}</string>
+					<string>{{194, 353}, {347, 157}}</string>
 					<reference ref="8"/>
 					<string>{{801, 521}, {347, 157}}</string>
+					<object class="NSDictionary">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSMutableArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>IBResizeActionFinalFrame</string>
+							<string>IBResizeActionInitialFrame</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>{{196, 353}, {347, 157}}</string>
+							<string>{{196, 353}, {347, 157}}</string>
+						</object>
+					</object>
 					<reference ref="9"/>
 					<reference ref="9"/>
 					<string>{0, 0}</string>
@@ -3606,6 +3761,12 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>{{520, 573}, {259, 63}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3662,7 +3823,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">524</int>
+			<int key="maxID">544</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3701,8 +3862,10 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSMutableArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>adblockEnableMenu</string>
 							<string>alertPanel</string>
 							<string>maximumCacheSizeField</string>
+							<string>pmmEnableMenu</string>
 							<string>portTextField</string>
 							<string>prefWindow</string>
 							<string>proxyEnableButton</string>
@@ -3714,6 +3877,8 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>

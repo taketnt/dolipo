@@ -3,7 +3,7 @@
 //  dolipo
 //
 //  Created by Kohichi Aoki on 08/03/10.
-//  Copyright 2008 __MyCompanyName__. All rights reserved.
+//  Copyright 2008 drikin.com. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
