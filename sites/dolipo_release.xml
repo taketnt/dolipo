@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+<channel>
+    <title>dolipo Appcast</title>
+    <link>http://dolipo.drikin.com/</link>
+    <description>dolioo update history</description>
+    <language>en</language>
+    <item>
+        <title>dolipo 1.0.7</title>
+		<enclosure sparkle:version="1.0.7" url="http://homepage.mac.com/koh/.Public/dolipo/dolipo.zip" length="730000" type="application/octet-stream"/>
+        <sparkle:releaseNotesLink>http://dolipo.googlecode.com/svn/trunk/sites/dolipo_release.html</sparkle:releaseNotesLink>
+    </item> 
+</channel>
+</rss>
+
