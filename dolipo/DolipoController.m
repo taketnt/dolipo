@@ -86,6 +86,15 @@
 	[NSTimer scheduledTimerWithTimeInterval:60*60*24 target:self selector:@selector(trim:) userInfo:nil repeats:YES];
 }
 
+#pragma mark Delegate
+
+- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
+{
+	[self kill];
+	
+	return YES;
+}
+
 #pragma mark TaskWrapper
 
 - (void)kill
