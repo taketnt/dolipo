@@ -21,6 +21,8 @@
 	IBOutlet id alertPanel;
 	IBOutlet id sbMenu;
 	IBOutlet NSButton *proxyEnableButton;
+	IBOutlet id adblockEnableMenu;
+	IBOutlet id pmmEnableMenu;
 	IBOutlet id proxyTextField;
     IBOutlet id portTextField;
 	IBOutlet id maximumCacheSizeField;
