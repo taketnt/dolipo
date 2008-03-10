@@ -1,2 +1,2 @@
-#summary One-sentence summary of this page.
+#summary default forbidden URLs.  please edit this as RAW format.
 ^http://homepage\.mac\.com/koh/test/dolipo\.html
