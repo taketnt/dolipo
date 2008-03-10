@@ -18,12 +18,12 @@
 		D76C87E30D7CBD8D002605AC /* polipo_trimcache-0.2.py in Resources */ = {isa = PBXBuildFile; fileRef = D76C87E20D7CBD8D002605AC /* polipo_trimcache-0.2.py */; };
 		D782DC670D74645300F36350 /* dolipo.tiff in Resources */ = {isa = PBXBuildFile; fileRef = D782DC660D74645300F36350 /* dolipo.tiff */; };
 		D782DD8A0D791FF200F36350 /* proxy.pac in Resources */ = {isa = PBXBuildFile; fileRef = D782DD890D791FF200F36350 /* proxy.pac */; };
-		D782DDBD0D792E6500F36350 /* forbidden_default.txt in Resources */ = {isa = PBXBuildFile; fileRef = D782DDBC0D792E6500F36350 /* forbidden_default.txt */; };
 		D785D7490D7B131800677F1F /* COPYING.text in Resources */ = {isa = PBXBuildFile; fileRef = D785D7480D7B131800677F1F /* COPYING.text */; };
 		D7987FA00D83DCDB00E9D333 /* Config.wiki in Resources */ = {isa = PBXBuildFile; fileRef = D7987F9D0D83DCDB00E9D333 /* Config.wiki */; };
 		D7987FA10D83DCDB00E9D333 /* Forbidden.wiki in Resources */ = {isa = PBXBuildFile; fileRef = D7987F9E0D83DCDB00E9D333 /* Forbidden.wiki */; };
 		D7987FA20D83DCDB00E9D333 /* Uncachable.wiki in Resources */ = {isa = PBXBuildFile; fileRef = D7987F9F0D83DCDB00E9D333 /* Uncachable.wiki */; };
 		D7987FBE0D8460CF00E9D333 /* NSFileManagerDK.m in Sources */ = {isa = PBXBuildFile; fileRef = D7987FBD0D8460CF00E9D333 /* NSFileManagerDK.m */; };
+		D79880B40D84C81100E9D333 /* ForbiddenDefault.wiki in Resources */ = {isa = PBXBuildFile; fileRef = D79880B30D84C81100E9D333 /* ForbiddenDefault.wiki */; };
 		D7BAF5610D69EE3500ECB817 /* polipo in Resources */ = {isa = PBXBuildFile; fileRef = D7BAF5600D69EE3500ECB817 /* polipo */; };
 		D7BAF5830D69EF9800ECB817 /* DolipoController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BAF5800D69EF9800ECB817 /* DolipoController.m */; };
 		D7BAF5840D69EF9800ECB817 /* TaskWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BAF5820D69EF9800ECB817 /* TaskWrapper.m */; };
@@ -63,13 +63,13 @@
 		D76C87E20D7CBD8D002605AC /* polipo_trimcache-0.2.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = "polipo_trimcache-0.2.py"; sourceTree = "<group>"; };
 		D782DC660D74645300F36350 /* dolipo.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = dolipo.tiff; sourceTree = "<group>"; };
 		D782DD890D791FF200F36350 /* proxy.pac */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = proxy.pac; sourceTree = "<group>"; };
-		D782DDBC0D792E6500F36350 /* forbidden_default.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = forbidden_default.txt; sourceTree = "<group>"; };
 		D785D7480D7B131800677F1F /* COPYING.text */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING.text; sourceTree = "<group>"; };
 		D7987F9D0D83DCDB00E9D333 /* Config.wiki */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; lineEnding = 0; name = Config.wiki; path = ../../wiki/Config.wiki; sourceTree = SOURCE_ROOT; };
 		D7987F9E0D83DCDB00E9D333 /* Forbidden.wiki */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Forbidden.wiki; path = ../../wiki/Forbidden.wiki; sourceTree = SOURCE_ROOT; };
 		D7987F9F0D83DCDB00E9D333 /* Uncachable.wiki */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Uncachable.wiki; path = ../../wiki/Uncachable.wiki; sourceTree = SOURCE_ROOT; };
 		D7987FBC0D8460CF00E9D333 /* NSFileManagerDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFileManagerDK.h; sourceTree = "<group>"; };
 		D7987FBD0D8460CF00E9D333 /* NSFileManagerDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSFileManagerDK.m; sourceTree = "<group>"; };
+		D79880B30D84C81100E9D333 /* ForbiddenDefault.wiki */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; lineEnding = 0; name = ForbiddenDefault.wiki; path = ../../wiki/ForbiddenDefault.wiki; sourceTree = SOURCE_ROOT; };
 		D7BAF5600D69EE3500ECB817 /* polipo */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = polipo; sourceTree = "<group>"; };
 		D7BAF57F0D69EF9800ECB817 /* DolipoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DolipoController.h; sourceTree = "<group>"; };
 		D7BAF5800D69EF9800ECB817 /* DolipoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DolipoController.m; sourceTree = "<group>"; };
@@ -165,11 +165,11 @@
 			children = (
 				D7987F9D0D83DCDB00E9D333 /* Config.wiki */,
 				D7987F9E0D83DCDB00E9D333 /* Forbidden.wiki */,
+				D79880B30D84C81100E9D333 /* ForbiddenDefault.wiki */,
 				D7987F9F0D83DCDB00E9D333 /* Uncachable.wiki */,
 				D76C87E20D7CBD8D002605AC /* polipo_trimcache-0.2.py */,
 				D785D7480D7B131800677F1F /* COPYING.text */,
 				D782DD890D791FF200F36350 /* proxy.pac */,
-				D782DDBC0D792E6500F36350 /* forbidden_default.txt */,
 				D782DC660D74645300F36350 /* dolipo.tiff */,
 				D75599C10D6C9D56007A5079 /* StatusIcon.tiff */,
 				D7BAF6880D6A4E6A00ECB817 /* dolipo.icns */,
@@ -250,12 +250,12 @@
 				D75599C20D6C9D56007A5079 /* StatusIcon.tiff in Resources */,
 				D782DC670D74645300F36350 /* dolipo.tiff in Resources */,
 				D782DD8A0D791FF200F36350 /* proxy.pac in Resources */,
-				D782DDBD0D792E6500F36350 /* forbidden_default.txt in Resources */,
 				D785D7490D7B131800677F1F /* COPYING.text in Resources */,
 				D76C87E30D7CBD8D002605AC /* polipo_trimcache-0.2.py in Resources */,
 				D7987FA00D83DCDB00E9D333 /* Config.wiki in Resources */,
 				D7987FA10D83DCDB00E9D333 /* Forbidden.wiki in Resources */,
 				D7987FA20D83DCDB00E9D333 /* Uncachable.wiki in Resources */,
+				D79880B40D84C81100E9D333 /* ForbiddenDefault.wiki in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
