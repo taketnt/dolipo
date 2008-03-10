@@ -4,22 +4,79 @@
 
 #import <SystemConfiguration/SystemConfiguration.h>
 #import "DolipoController.h"
+#import "NSFileManagerDK.h"
 
 @implementation DolipoController
 
--(void)awakeFromNib
+#pragma mark private
+- (void)createStatusBar
 {
+	// create status bar
+	// ステータスバー作成
+	NSStatusBar *bar = [ NSStatusBar systemStatusBar ];
+	// ステータスアイテム作成
+	sbItem = [ bar statusItemWithLength : NSVariableStatusItemLength ];
+	[sbItem retain ];
+	[sbItem setTitle         : @""   ];
+	[sbItem setImage         : [ NSImage imageNamed : @"dolipo.tiff" ] ];
+	[sbItem setToolTip       : @"dolipo" ];
+	[sbItem setHighlightMode : YES       ];
+	[sbItem setMenu			 : sbMenu    ];
+	[sbItem retain];
+	
+	return;
+}
+
+- (void)confirmProxySetting
+{
+	// auto input parentProxy from System Preferences
+	if ( [[proxyTextField stringValue] isEqualToString:@""] && [[portTextField stringValue] isEqualToString:@""] ) {
+		CFDictionaryRef proxyDict = SCDynamicStoreCopyProxies(NULL);
+		CFNumberRef enableNum = (CFNumberRef)CFDictionaryGetValue(proxyDict, kSCPropNetProxiesHTTPEnable);
+		if ( [(NSNumber*)enableNum intValue] == NSOnState ) {
+			CFStringRef hostStr = (CFStringRef)CFDictionaryGetValue(proxyDict, kSCPropNetProxiesHTTPProxy);
+			if ( ![(NSString*)hostStr isEqualToString:@"127.0.0.1"] ) {
+				[proxyTextField setStringValue:(NSString*)hostStr];
+				[proxyEnableButton setState:NSOnState];
+			}
+			CFNumberRef portNum = (CFNumberRef)CFDictionaryGetValue(proxyDict, kSCPropNetProxiesHTTPPort);
+			if ( ![[(NSNumber*)portNum stringValue] isEqualToString:@"8123"] ) {
+				[portTextField setStringValue:[(NSNumber*)portNum stringValue]];
+			}			
+		}
+	}
+	
+	return;
+}
+
+#pragma mark public
+-(void)awakeFromNib
+{	
 	firstRun = YES;
     polipoRunning=NO;
     polipoTask=nil;
-	
+
+	[self createStatusBar];
+
 	// trim cache first
 	[self trim:self];
 	
-	[self createStatusBar];
-	[self createCacheDir];
-	[self copyConfigFiles];
-	[self confirmProxySetting];	
+	// create Cache Directory
+	[[NSFileManager defaultManager] createDirectoryAtSupportPath:@"Cache"];
+	
+	// copy resource files for polipo
+	NSArray* copylist = [NSArray arrayWithObjects:	@"forbidden_default.txt", 
+													@"Forbidden.wiki",
+													@"Uncachable.wiki",
+													@"Config.wiki",
+													@"proxy.pac",
+													nil];
+	int i;
+	for ( i = 0; i < [copylist count]; i++ ) {
+		[[NSFileManager defaultManager] copyFileFromResourcePathToSupportPath:[copylist objectAtIndex:i]];
+	}
+	
+	[self confirmProxySetting];
 	[self restart:self];
 	
 	// callbackの登録 
@@ -84,7 +141,7 @@
 			proxy = @"";
 		}
 
-        polipoTask=[[TaskWrapper alloc] initWithController:self arguments:[NSArray arrayWithObjects:polipoPath, @"-c", @"config", proxy, nil]];
+        polipoTask=[[TaskWrapper alloc] initWithController:self arguments:[NSArray arrayWithObjects:polipoPath, @"-c", @"Config.wiki", proxy, nil]];
         // kick off the process asynchronously
         [polipoTask startProcess];
 		
@@ -116,7 +173,7 @@
 		maximumCacheSize = @"500M";
 	}
 	
-	TaskWrapper* trimTask=[[TaskWrapper alloc] initWithController:self arguments:[NSArray arrayWithObjects:@"/usr/bin/python", trimPath, @"-v", [[self getApplicationSupportFolder] stringByAppendingPathComponent:@"Cache"], maximumCacheSize, nil]];
+	TaskWrapper* trimTask=[[TaskWrapper alloc] initWithController:self arguments:[NSArray arrayWithObjects:@"/usr/bin/python", trimPath, @"-v", [[[NSFileManager defaultManager] applicationSupportPath] stringByAppendingPathComponent:@"Cache"], maximumCacheSize, nil]];
 	[trimTask startProcess];
 }
 
@@ -267,110 +324,4 @@ static CFRunLoopSourceRef rls;
 	return;
 }
 
-#pragma mark private
-- (void)createStatusBar
-{
-	// create status bar
-	// ステータスバー作成
-	NSStatusBar *bar = [ NSStatusBar systemStatusBar ];
-	// ステータスアイテム作成
-	sbItem = [ bar statusItemWithLength : NSVariableStatusItemLength ];
-	[sbItem retain ];
-	[sbItem setTitle         : @""   ]; // タイトルをセット
-	[sbItem setImage         : [ NSImage imageNamed : @"dolipo.tiff" ] ];
-	[sbItem setToolTip       : @"dolipo" ]; // ツールチップをセット
-	[sbItem setHighlightMode : YES       ]; // クリック時にハイライト表示
-	[sbItem          setMenu : sbMenu    ]; // メニューをセット	
-	[sbItem retain];
-	
-	return;
-}
-
-- (NSString*)getApplicationSupportFolder
-{
-	NSFileManager *fileManager;
-    NSString *applicationSupportFolder = nil;
-	
-    fileManager = [NSFileManager defaultManager];
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : NSTemporaryDirectory();
-    applicationSupportFolder = [basePath stringByAppendingPathComponent:@"dolipo"];
-    if ( ![fileManager fileExistsAtPath:applicationSupportFolder isDirectory:NULL] ) {
-        [fileManager createDirectoryAtPath:applicationSupportFolder attributes:nil];
-    }
-	return applicationSupportFolder;
-}
-
-- (void)createCacheDir
-{
-	NSFileManager *fileManager;
-	fileManager = [NSFileManager defaultManager];
-	
-    NSString *applicationSupportFolder = [self getApplicationSupportFolder];
-	NSString* cachePath = [applicationSupportFolder stringByAppendingPathComponent:@"Cache"];
-	if ( ![fileManager fileExistsAtPath:cachePath isDirectory:NULL] ) {
-		[fileManager createDirectoryAtPath:cachePath attributes:nil];
-	}	
-	
-	return;
-}
-
-- (void)copyConfigFiles{
-	NSFileManager *fileManager;
-	fileManager = [NSFileManager defaultManager];
-
-    NSString *applicationSupportFolder = [self getApplicationSupportFolder];
-
-	NSString* srcPath = [[NSBundle mainBundle] pathForResource:@"forbidden" ofType:@"txt"];
-	NSString* distPath = [applicationSupportFolder stringByAppendingPathComponent:[srcPath lastPathComponent]];
-	if ( [fileManager fileExistsAtPath:distPath isDirectory:NULL] ) {
-		[fileManager removeFileAtPath:distPath handler:NULL];
-	}
-	NSLog(@"%d", [fileManager copyPath:srcPath toPath:distPath handler:nil]);
-
-	srcPath = [[NSBundle mainBundle] pathForResource:@"forbidden_default" ofType:@"txt"];
-	distPath = [applicationSupportFolder stringByAppendingPathComponent:[srcPath lastPathComponent]];
-	if ( [fileManager fileExistsAtPath:distPath isDirectory:NULL] ) {
-		[fileManager removeFileAtPath:distPath handler:NULL];
-	}
-	NSLog(@"%d", [fileManager copyPath:srcPath toPath:distPath handler:nil]);
-	
-	srcPath = [[NSBundle mainBundle] pathForResource:@"uncachable" ofType:@"txt"];
-	distPath = [applicationSupportFolder stringByAppendingPathComponent:[srcPath lastPathComponent]];
-	if ( [fileManager fileExistsAtPath:distPath isDirectory:NULL] ) {
-		[fileManager removeFileAtPath:distPath handler:NULL];
-	}
-	NSLog(@"%d", [fileManager copyPath:srcPath toPath:distPath handler:nil]);
-
-	srcPath = [[NSBundle mainBundle] pathForResource:@"proxy" ofType:@"pac"];
-	distPath = [applicationSupportFolder stringByAppendingPathComponent:[srcPath lastPathComponent]];
-	if ( [fileManager fileExistsAtPath:distPath isDirectory:NULL] ) {
-		[fileManager removeFileAtPath:distPath handler:NULL];
-	}
-	NSLog(@"%d", [fileManager copyPath:srcPath toPath:distPath handler:nil]);
-	
-	return;
-}
-
-- (void)confirmProxySetting
-{
-	// auto input parentProxy from System Preferences
-	if ( [[proxyTextField stringValue] isEqualToString:@""] && [[portTextField stringValue] isEqualToString:@""] ) {
-		CFDictionaryRef proxyDict = SCDynamicStoreCopyProxies(NULL);
-		CFNumberRef enableNum = (CFNumberRef)CFDictionaryGetValue(proxyDict, kSCPropNetProxiesHTTPEnable);
-		if ( [(NSNumber*)enableNum intValue] == NSOnState ) {
-			CFStringRef hostStr = (CFStringRef)CFDictionaryGetValue(proxyDict, kSCPropNetProxiesHTTPProxy);
-			if ( ![(NSString*)hostStr isEqualToString:@"127.0.0.1"] ) {
-				[proxyTextField setStringValue:(NSString*)hostStr];
-				[proxyEnableButton setState:NSOnState];
-			}
-			CFNumberRef portNum = (CFNumberRef)CFDictionaryGetValue(proxyDict, kSCPropNetProxiesHTTPPort);
-			if ( ![[(NSNumber*)portNum stringValue] isEqualToString:@"8123"] ) {
-				[portTextField setStringValue:[(NSNumber*)portNum stringValue]];
-			}			
-		}
-	}
-	
-	return;
-}
 @end

@@ -32,6 +32,7 @@
 - (IBAction)run:(id)sender;
 - (IBAction)trim:(id)sender;
 - (IBAction)restart:(id)sender;
+
 - (IBAction)openNetworkPreference:(id)sender;
 - (IBAction)openPolipoConfig:(id)sender;
 - (IBAction)openConsole:(id)sender;
@@ -39,11 +40,6 @@
 - (IBAction)startAtLogin:(id)sender;
 
 - (void)kill;
-- (NSString*)getApplicationSupportFolder;
-- (void)createStatusBar;
 - (void)watchForNetworkChanges;
-- (void)createCacheDir;
-- (void)copyConfigFiles;
-- (void)confirmProxySetting;
 
 @end
